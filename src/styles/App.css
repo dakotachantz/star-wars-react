@@ -5,6 +5,7 @@
 
 .card {
   margin: 5px;
+  background-color: rgba(255, 255, 255, .93);
 }
 
 .form {
@@ -37,6 +38,7 @@ hr {
 
 .jumbotron {
   margin: 1em 15px;
+  background-color: rgba(236, 238, 239, 0.93);
 }
 
 .list-group {
@@ -57,9 +59,26 @@ h1 {
   align-items: center;
   text-align: center;
   padding: 1em;
-  background-color: #fff;
+  background-color: rgba(236, 238, 239, 0.93);
 }
 
 .form-control {
   width: 23em;
+}
+
+.card-block {
+  height: 28em;
+}
+
+img {
+  position: relative;
+  top: 80px;
+  right: -25px;
+  float: right;
+  border-radius: 10px;
+  height: 175px;
+}
+
+#form input:focus {
+  border-color: red;
 }
