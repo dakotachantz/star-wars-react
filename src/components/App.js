@@ -23,6 +23,11 @@ class App extends Component {
   // See form lesson for details.
   // Enter your code below:
 
+  handleNameChange = (event) => {
+    this.setState({
+      value: event.target.value
+    })
+  }
 
 
   //  FORM: SUBMIT METHOD
@@ -32,6 +37,16 @@ class App extends Component {
   // Then, set the value of the input back to an empty string.
   // Enter your code below:
 
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    let pilot = this.state.value;
+    console.log(pilot);
+
+    this.setState({
+      value: "",
+      pilot: pilot
+    })
+  }
 
   // LIFECYCLE
   // Which lifecycle is best for fetching data?
@@ -52,18 +67,7 @@ class App extends Component {
   }
 
   // RENDER
-  // Before you can map over the data you've fetched, you will first need to store that 'state' in a variable.
-  // Map over the data.
-  // Don't forget to set the 'key'. In this case, use the vehicle name.
-  // You will need the following values: name, model, manufacturer, class, passengers, crew, length, max speed, and cargo capacity.
-  // Rendering: create a 'card' for each of the vehicles. consult the Bootstrap 4 docs for details.
-  // Enter your code below:
-
   render() {
-    /*
-    Store vehicles state in a variable.
-    Map over this variable to access the values needed to render.
-    */
     let vehicles;
     vehicles = this.state.vehicles.map((vehicle, index) => {
       return (
@@ -88,26 +92,22 @@ class App extends Component {
         </div>
       );
     });
+    let value = this.state.value;
     return (
       <div className="App">
-        {/*
-        The App component needs the following:
-         jumbotron section, form section, vehicle cards section.
-         Your form will also need a header in which you will pass the state of the form upon submit.
-         */}
         <section className="jumbotron">
           <h1>Star Wars<hr /></h1>
           <h6>The Vehicles of Star Wars</h6>
         </section>
         <section id="form" className="jumbotron">
           <h2>What is your name, pilot?</h2>
-          <form>
+          <form onSubmit={this.handleFormSubmit}>
             <div className="form-group">
-              <input className="form-control" type="text" placeholder="Enter your name" />
+              <input onChange={this.handleNameChange} className="form-control" type="text" name="value" value={value} placeholder="Enter your name" autoComplete="off" />
             </div>
-            <button className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
           </form>
-          <header><h2>Person</h2></header>
+          <h2>{this.state.pilot}</h2>
         </section>
         <section className="vehicle-cards container-fluidd">
           {vehicles}
